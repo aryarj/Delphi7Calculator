@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Buttons, StdCtrls;
+  Dialogs, Buttons, StdCtrls, POO;
 
 type
   TfrmCalculadora = class(TForm)
@@ -230,13 +230,14 @@ else begin
 num2 := StrToFloat(editResultado.Text);
 case sinal of
 1:
-resultado := num1 + num2;
+//Utilizando POO
+resultado := soma(num1,num2);
 2:
-resultado := num1 - num2;
+resultado := subt(num1,num2);
 3:
-resultado := num1 * num2;
+resultado := mult(num1,num2);
 4:
-resultado := num1 / num2;
+resultado := divi(num1,num2);
 end;
 //carregando o resultado no visor/edit de entrada de dados
 editResultado.Text := FloatToStr(resultado);
@@ -245,6 +246,8 @@ editSequencia.Text:= editSequencia.Text+ ' = ' +FloatToStr(resultado);
 btnResultado.Enabled := false;
 end;
 end;
+
+
 
 // Habilitando a operação do teclado físico
 // É preciso habilitar o evento 'OnKeyPress' em FormKeyPress,
@@ -255,12 +258,12 @@ begin
   if key='+' then
   begin
     sinal:=1;
-    editSequencia.Text:= editSequencia.Text + '+';
     if Trim(editResultado.Text)= '' then
     begin
     ShowMessage('Digite algo no campo');
     end
     else begin
+    editSequencia.Text:= editSequencia.Text + '+';
     btnResultado.Enabled:=true;
     num1 := StrToFloat(editResultado.Text);
     editResultado.Clear;
@@ -271,12 +274,12 @@ begin
   if key='-' then
   begin
       sinal:=2;
-      editSequencia.Text:= editSequencia.Text + '-';
       if Trim(editResultado.Text)= '' then
       begin
       ShowMessage('Digite algo no campo');
       end
       else begin
+      editSequencia.Text:= editSequencia.Text + '-';
       btnResultado.Enabled:=true;
       num1 := StrToFloat(editResultado.Text);
       editResultado.Clear;
@@ -287,12 +290,12 @@ begin
   if key='*' then
   begin
       sinal:=3;
-      editSequencia.Text:= editSequencia.Text + '*';
       if Trim(editResultado.Text)= '' then
       begin
       ShowMessage('Digite algo no campo');
       end
       else begin
+      editSequencia.Text:= editSequencia.Text + '*';
       btnResultado.Enabled:=true;
       num1 := StrToFloat(editResultado.Text);
       editResultado.Clear;
@@ -303,12 +306,12 @@ begin
   if key='/' then
   begin
       sinal:=4;
-      editSequencia.Text:= editSequencia.Text + '/';
       if Trim(editResultado.Text)= '' then
       begin
       ShowMessage('Digite algo no campo');
       end
       else begin
+      editSequencia.Text:= editSequencia.Text + '/';
       btnResultado.Enabled:=true;
       num1 := StrToFloat(editResultado.Text);
       editResultado.Clear;
@@ -333,13 +336,14 @@ begin
     num2 := StrToFloat(editResultado.Text);
       case sinal of
       1:
-      resultado := num1 + num2;
+      //Utilizando POO
+      resultado := soma(num1,num2);
       2:
-      resultado := num1 - num2;
+      resultado := subt(num1,num2);
       3:
-      resultado := num1 * num2;
+      resultado := mult(num1,num2);
       4:
-      resultado := num1 / num2;
+      resultado := divi(num1,num2);
       end;
       editResultado.Text := FloatToStr(resultado);
       editSequencia.Text:= editSequencia.Text + ' = ' + FloatToStr(resultado);
